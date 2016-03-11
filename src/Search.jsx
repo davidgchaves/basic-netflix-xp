@@ -6,8 +6,8 @@ import ShowCard from './ShowCard'
 const Search = () => (
   <div className='container'>
     <div className='shows'>
-      {data.shows.map((show, i) => (
-        <ShowCard {...show} key={i} />
+      {data.shows.map((show) => (
+        <ShowCard {...show} key={show.imdbID} />
        ))}
     </div>
   </div>
