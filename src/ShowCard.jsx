@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ShowCard = ({ description, poster, title, year }) => (
-  <div className='show'>
+  <div className='show-card'>
     <img src={`public/img/posters/${poster}`} className='show-card-img' />
     <div className='show-text'>
       <h3 className='show-title'>{title}</h3>
