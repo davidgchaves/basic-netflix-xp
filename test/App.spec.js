@@ -1,8 +1,13 @@
 /* eslint-env mocha */
+import React from 'react'
 import { expect } from 'chai'
+import { shallow } from 'enzyme'
 
-describe('Basic testing infrastructure', () => {
-  it('works as expected', () => {
-    expect(1 + 1).to.eql(2)
+import Search from '../src/Search'
+
+describe('<Search />', () => {
+  it('renders our brand', () => {
+    const wrapper = shallow(<Search />)
+    expect(wrapper.contains(<h1 className='brand'>Basic Netflix XP</h1>)).to.be.true
   })
 })

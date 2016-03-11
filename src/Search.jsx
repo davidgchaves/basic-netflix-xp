@@ -22,7 +22,7 @@ class Search extends React.Component {
     return (
       <div className='container'>
         <header className='header'>
-          <h1 className='brand'>Search Shows</h1>
+          <h1 className='brand'>Basic Netflix XP</h1>
           <input
             type='text'
             className='search-input'
