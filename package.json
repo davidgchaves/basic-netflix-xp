@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run build",
-    "build": "webpack",
-    "watch": "webpack --watch",
+    "build": "webpack -d",
+    "watch": "webpack -d --watch",
     "test": "npm run lint && mocha --require test/helpers/setup.js",
     "lint": "standard --ignore-path .gitignore --cache ./",
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html --require babel-register --extension .jsx npm test"

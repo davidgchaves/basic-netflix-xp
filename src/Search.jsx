@@ -1,6 +1,5 @@
 import React from 'react'
 
-import data from '../public/data'
 import ShowCard from './ShowCard'
 
 class Search extends React.Component {
@@ -17,6 +16,7 @@ class Search extends React.Component {
   }
 
   render () {
+    const { shows } = this.props.route
     const { searchTerm } = this.state
 
     return (
@@ -32,7 +32,7 @@ class Search extends React.Component {
           />
         </header>
         <div className='shows'>
-          {data.shows
+          {shows
             .filter((show) =>
               `${show.title} ${show.description}`
                 .toUpperCase()
@@ -45,6 +45,10 @@ class Search extends React.Component {
       </div>
     )
   }
+}
+
+Search.propTypes = {
+  shows: React.PropTypes.arrayOf(React.PropTypes.object)
 }
 
 export default Search
