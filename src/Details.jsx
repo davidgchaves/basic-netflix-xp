@@ -20,7 +20,7 @@ class Details extends React.Component {
         </div>
 
         <div className='video-container'>
-          <iframe src={youtubeUrl} frameBorder='0' allowFullScreen >
+          <iframe src={youtubeUrl} frameBorder='0' allowFullScreen>
           </iframe>
         </div>
       </div>
