@@ -10,7 +10,7 @@
     "build": "webpack -d",
     "watch": "webpack -d --watch",
     "test": "npm run lint && mocha --require test/helpers/setup.js",
-    "lint": "standard --ignore-path .gitignore --cache ./",
+    "lint": "standard --verbose --ignore-path .gitignore --cache ./ | node_modules/.bin/snazzy ",
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html --require babel-register --extension .jsx npm test"
   },
   "dependencies": {
@@ -33,6 +33,7 @@
     "mocha": "^2.4.5",
     "nyc": "^6.0.0",
     "react-addons-test-utils": "^0.14.7",
+    "snazzy": "^3.0.0",
     "standard": "^6.0.8",
     "webpack": "^1.12.13"
   },
