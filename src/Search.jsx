@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Header from './Header'
 import ShowCard from './ShowCard'
 
 class Search extends React.Component {
@@ -21,16 +22,12 @@ class Search extends React.Component {
 
     return (
       <div className='container'>
-        <header className='header'>
-          <h1 className='brand'>Basic Netflix XP</h1>
-          <input
-            type='text'
-            className='search-input'
-            placeholder='Search'
-            value={searchTerm}
-            onChange={this.handleSearchTermChange}
-          />
-        </header>
+        <Header
+          searchTerm={searchTerm}
+          handleSearchTermChange={this.handleSearchTermChange}
+          showSearch
+        />
+
         <div className='shows'>
           {shows
             .filter((show) =>

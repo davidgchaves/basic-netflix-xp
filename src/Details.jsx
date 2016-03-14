@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Header from './Header'
+
 class Details extends React.Component {
   render () {
     const { description, poster, title, trailer, year } = this.props.params || {}
@@ -8,9 +10,7 @@ class Details extends React.Component {
 
     return (
       <div className='container'>
-        <header className='header'>
-          <h1 className='brand'>Basic Netflix XP</h1>
-        </header>
+        <Header />
 
         <div className='video-info'>
           <h1 className='video-title'>{title}</h1>
