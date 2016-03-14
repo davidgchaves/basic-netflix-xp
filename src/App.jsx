@@ -8,18 +8,12 @@ import Details from './Details'
 import data from '../public/data'
 
 class App extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.assignShow = this.assignShow.bind(this)
-  }
-
   assignShow (nextState, replace) {
-    const show = data.shows[nextState.params.id]
+    const show = data.shows.filter((s) => s.imdbID === nextState.params.id)
 
-    if (!show) { return replace('/') }
+    if (show.length < 1) { return replace('/') }
 
-    Object.assing(nextState.params, show)
+    Object.assign(nextState.params, show[0])
     return nextState
   }
 
