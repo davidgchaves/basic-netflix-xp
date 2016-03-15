@@ -6,8 +6,7 @@ import SearchContainer from './SearchContainer'
 
 class Search extends React.Component {
   render () {
-    const { shows } = this.props.route
-    const { searchTerm } = this.props
+    const { shows, searchTerm } = this.props
 
     return (
       <div className='container'>

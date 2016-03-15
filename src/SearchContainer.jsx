@@ -2,7 +2,10 @@ import { connect } from 'react-redux'
 
 import { SET_SEARCH_TERM } from './Constants'
 
-const mapStateToProps = ({ searchTerm }) => ({ searchTerm })
+const mapStateToProps = ({ searchTerm, shows }) => ({
+  searchTerm,
+  shows
+})
 
 const mapDispatchToProps = (dispatch) => ({
   setSearchTerm: (term) =>
