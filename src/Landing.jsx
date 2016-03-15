@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, hashHistory } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 
 import SearchContainer from './SearchContainer'
 
@@ -16,7 +16,7 @@ class Landing extends React.Component {
   }
 
   goToSearch (event) {
-    hashHistory.push('search')
+    browserHistory.push('search')
     event.preventDefault()
   }
 
