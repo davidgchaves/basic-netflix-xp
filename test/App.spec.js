@@ -1,36 +1,43 @@
 /* eslint-env mocha */
 import React from 'react'
 import { expect } from 'chai'
-import { shallow, mount } from 'enzyme'
+import { render } from 'enzyme'
+import { Provider } from 'react-redux'
 
 import Search from '../src/Search'
-import ShowCard from '../src/ShowCard'
+import Header from '../src/Header'
+import store from '../src/Store'
+import { SET_SEARCH_TERM } from '../src/Constants'
 import data from '../public/data'
 
-describe('<Search />', () => {
+describe('<Header />', () => {
   it('renders our brand', () => {
-    const wrapper = shallow(<Search />)
-    expect(wrapper.contains(<h1 className='brand'>Basic Netflix XP</h1>)).to.be.true
+    const wrapper = render(<Header store={store} />)
+    expect(wrapper.find('h1.brand').text()).to.equal('Basic Netflix XP')
   })
+})
+
+describe('<Search />', () => {
+  const mockRoute = { shows: data.shows }
 
   it('renders all available shows', () => {
-    const wrapper = shallow(<Search />)
-    expect(wrapper.find(ShowCard).length).to.equal(data.shows.length)
+    const wrapper = render(
+      <Provider store={store}>
+        <Search route={mockRoute} />
+      </Provider>
+    )
+    expect(wrapper.find('div.show-card').length).to.equal(data.shows.length)
   })
 
-  context('when filtering shows', () => {
-    const wrapper = mount(<Search />)
-    const input = wrapper.find('.search-input')
+  it('filters the shows', () => {
+    store.dispatch({type: SET_SEARCH_TERM, payload: 'house'})
 
-    input.node.value = 'house'
-    input.simulate('change')
+    const wrapper = render(
+      <Provider store={store}>
+        <Search route={mockRoute} />
+      </Provider>
+    )
 
-    it('uses the typed search term', () => {
-      expect(wrapper.state('searchTerm')).to.equal('house')
-    })
-
-    it('actually filters the shows', () => {
-      expect(wrapper.find('.show-card').length).to.equal(2)
-    })
+    expect(wrapper.find('div.show-card').length).to.equal(2)
   })
 })
