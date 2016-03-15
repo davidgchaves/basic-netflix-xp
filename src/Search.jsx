@@ -2,31 +2,16 @@ import React from 'react'
 
 import Header from './Header'
 import ShowCard from './ShowCard'
+import SearchContainer from './SearchContainer'
 
 class Search extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.state = { searchTerm: '' }
-
-    this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
-  }
-
-  handleSearchTermChange (event) {
-    this.setState({ searchTerm: event.target.value })
-  }
-
   render () {
     const { shows } = this.props.route
-    const { searchTerm } = this.state
+    const { searchTerm } = this.props
 
     return (
       <div className='container'>
-        <Header
-          searchTerm={searchTerm}
-          handleSearchTermChange={this.handleSearchTermChange}
-          showSearch
-        />
+        <Header showSearch />
 
         <div className='shows'>
           {shows
@@ -45,7 +30,8 @@ class Search extends React.Component {
 }
 
 Search.propTypes = {
-  shows: React.PropTypes.arrayOf(React.PropTypes.object)
+  shows: React.PropTypes.arrayOf(React.PropTypes.object),
+  searchTerm: React.PropTypes.string
 }
 
-export default Search
+export default SearchContainer(Search)

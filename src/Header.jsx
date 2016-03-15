@@ -1,46 +1,62 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const Header = ({ handleSearchTermChange, searchTerm, showSearch }) => {
-  const backToSearch = (
-    <h2 className='header-back'>
-      <Link to='/search'>
-        Back
-      </Link>
-    </h2>
-  )
+import SearchContainer from './SearchContainer'
 
-  const searchBox = (
-    <input
-      type='text'
-      className='search-input'
-      placeholder='Search'
-      value={searchTerm}
-      onChange={handleSearchTermChange}
-    />
-  )
+class Header extends React.Component {
+  constructor (props) {
+    super(props)
 
-  const backToSearchOrSearchBox = () =>
-    showSearch
-      ? searchBox
-      : backToSearch
+    this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
+  }
 
-  return (
-    <header className='header'>
-      <h1 className='brand'>
-        <Link to='/' className='brand-link'>
-          Basic Netflix XP
+  handleSearchTermChange (event) {
+    this.props.setSearchTerm(event.target.value)
+  }
+
+  render () {
+    const { searchTerm, showSearch } = this.props
+
+    const backToSearch = (
+      <h2 className='header-back'>
+        <Link to='/search'>
+          Back
         </Link>
-      </h1>
-      {backToSearchOrSearchBox()}
-    </header>
-  )
+      </h2>
+    )
+
+    const searchBox = (
+      <input
+        type='text'
+        className='search-input'
+        placeholder='Search'
+        value={searchTerm}
+        onChange={this.handleSearchTermChange}
+      />
+    )
+
+    const backToSearchOrSearchBox = () =>
+      showSearch
+        ? searchBox
+        : backToSearch
+
+    return (
+      <header className='header'>
+        <h1 className='brand'>
+          <Link to='/' className='brand-link'>
+            Basic Netflix XP
+          </Link>
+        </h1>
+        {backToSearchOrSearchBox()}
+      </header>
+    )
+  }
 }
 
 Header.propTypes = {
-  handleSearchTermChange: React.PropTypes.func,
+  setSearchTerm: React.PropTypes.func,
   searchTerm: React.PropTypes.string,
   showSearch: React.PropTypes.bool
 }
 
-export default Header
+export default SearchContainer(Header)
