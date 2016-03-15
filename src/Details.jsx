@@ -17,7 +17,7 @@ class Details extends React.Component {
     const { id } = this.props.params
     const { description, poster, title, trailer, year } = this.assignShow(shows, id)
     const youtubeUrl = `https://www.youtube-nocookie.com/embed/${trailer}?rel=0&amp;controls=0&amp;showinfo=0`
-    const posterUrl = `public/img/posters/${poster}`
+    const posterUrl = `/public/img/posters/${poster}`
 
     return (
       <div className='container'>
