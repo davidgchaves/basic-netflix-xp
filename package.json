@@ -15,6 +15,7 @@
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html --require babel-register --extension .jsx npm test"
   },
   "dependencies": {
+    "axios": "^0.9.1",
     "express": "^4.13.4",
     "lodash.template": "^4.2.2",
     "react": "^0.14.7",
