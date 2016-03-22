@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { readFileSync } from 'fs'
 
 import store from './src/Store'
-import routes from './src/routes'
+import { asyncRoutes } from './src/routes'
 
 const port = 5050
 const baseTemplate = readFileSync('./index.html')
@@ -17,7 +17,7 @@ app.use('/public', express.static('./public'))
 
 app.use((req, res) => {
   match(
-    {routes: routes(), location: req.url},
+    {routes: asyncRoutes, location: req.url},
     (error, redirectLocation, renderProps) => {
       if (error) {
         res

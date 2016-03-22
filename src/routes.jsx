@@ -1,19 +1,53 @@
-import React from 'react'
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-
-import Landing from './Landing'
 import Layout from './Layout'
-import Search from './Search'
-import Details from './Details'
 
-const routes = () => (
-  <Router history={browserHistory}>
-    <Route path='/' component={Layout} >
-      <IndexRoute component={Landing} />
-      <Route path='/search' component={Search} />
-      <Route path='/details/:id' component={Details} />
-    </Route>
-  </Router>
-)
+// `node-ensure` shims asynchronous webpack module loading into node
+if (typeof module !== 'undefined' && module.require) {
+  if (typeof require.ensure === 'undefined') {
+    require.ensure = require('node-ensure')
+  }
+}
 
-export default routes
+export const asyncRoutes = {
+  component: Layout,
+  path: '/',
+
+  indexRoute: {
+    getComponent (_, cb) {
+      require.ensure(
+        [],
+        (error) =>
+          error
+            ? console.error(`Landing require.ensure error: ${error}`)
+            : cb(null, require('./Landing').default)
+      )
+    }
+  },
+
+  childRoutes: [
+    {
+      path: 'search',
+      getComponent (_, cb) {
+        require.ensure(
+          [],
+          (error) =>
+            error
+              ? console.error(`Search require.ensure error: ${error}`)
+              : cb(null, require('./Search').default)
+        )
+      }
+    },
+
+    {
+      path: 'details/:id',
+      getComponent (_, cb) {
+        require.ensure(
+          [],
+          (error) =>
+            error
+              ? console.error(`Details require.ensure error: ${error}`)
+              : cb(null, require('./Details').default)
+        )
+      }
+    }
+  ]
+}
