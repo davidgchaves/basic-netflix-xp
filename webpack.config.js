@@ -20,14 +20,15 @@ module.exports = {
     preLoaders: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
-        include: path.join(__dirname, '/src')
+        loader: 'standard-loader',
+        exclude: path.join(__dirname, '/node_modules')
       }
     ],
     loaders: [
       {
         test: /\.jsx?$/,
-        loader: 'eslint-loader'
+        loader: 'babel-loader',
+        include: path.join(__dirname, '/src')
       },
       {
         test: /\.json$/,
